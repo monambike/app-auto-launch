@@ -15,20 +15,23 @@ ECHO Please note that the files path may be wrong, be sure of edit the cmd file 
 ECHO.
 ECHO +---------------------------------------------+
 ECHO \                                             /
-ECHO \  PLEASE CHOOSE THE APPS THAT U WANT TO OPEN /
+ECHO \  PLEASE CHOOSE THE SERVICES THAT U WANT TO OPEN /
 ECHO \                                             /
+ECHO \ COMMANDS                                    /
 ECHO \ 0. Open Chosen Apps                         /
 ECHO \ 1. Clear                                    /
 ECHO \ 2. Cancel                                   /
 ECHO \ 3. Exit                                     /
 ECHO \                                             /
-ECHO \ APPS:                                       /
+ECHO \ SERVICES                                    /
+ECHO \ Apps:                                       /
 ECHO \ A. Sublime Text 3                           /
 ECHO \ B. Discord                                  /
 ECHO \ C. XAMPP                                    /
+ECHO \ Prompts:                                    /
 ECHO \ D. GIT                                      /
 ECHO \ E. CMD                                      /
-ECHO \ BROWSERS:                                   /
+ECHO \ Browser:                                    /
 ECHO \ F. Opera                                    /
 ECHO \                                             /
 ECHO +---------------------------------------------+
@@ -38,26 +41,66 @@ ECHO "Please, select an app typing the <letter> of the app that you want to open
 "After you decide wich apps do you want to open, press 0 to open everything."
 ECHO.
 ECHO Your apps: '%userOption%'
-CHOICE /C 0123AB /N /M "Choice: "
+CHOICE /C 0123ABCDEF /N /M "Choice: "
 
+:: COMMANDS
 :: If user has chosen 0
 IF %ERRORLEVEL% EQU 1 (
-	SET userOption=%userOption%0
-	GOTO :returnMenu
+	ECHO Open chosen apps
+	PAUSE
+	CLS
+	GOTO :optionsMenu
 )
 :: If user has chosen 1
 IF %ERRORLEVEL% EQU 2 (
-	SET userOption=%userOption%1
-	GOTO :returnMenu
+	ECHO Clear
+	PAUSE
+	CLS
+	GOTO :optionsMenu
 )
 :: If user has chosen 2
 IF %ERRORLEVEL% EQU 3 (
-	SET userOption=%userOption%2
-	GOTO :returnMenu
+	ECHO Cancel
+	PAUSE
+	CLS
+	GOTO :optionsMenu
 )
 IF %ERRORLEVEL% EQU 4 (
-	ECHO userOption
+	ECHO Exit
 	PAUSE
+	CLS
+	GOTO :optionsMenu
+)
+:: SERVICES
+IF %ERRORLEVEL% EQU 5 (
+	SET userOption=%userOption%A
+	CLS
+	GOTO :optionsMenu
+)
+IF %ERRORLEVEL% EQU 6 (
+	SET userOption=%userOption%B
+	CLS
+	GOTO :optionsMenu
+)
+IF %ERRORLEVEL% EQU 7 (
+	SET userOption=%userOption%C
+	CLS
+	GOTO :optionsMenu
+)
+IF %ERRORLEVEL% EQU 8 (
+	SET userOption=%userOption%D
+	CLS
+	GOTO :optionsMenu
+)
+IF %ERRORLEVEL% EQU 9 (
+	SET userOption=%userOption%E
+	CLS
+	GOTO :optionsMenu
+)
+IF %ERRORLEVEL% EQU 10 (
+	SET userOption=%userOption%F
+	CLS
+	GOTO :optionsMenu
 )
 
 :: Function to gather an exception
