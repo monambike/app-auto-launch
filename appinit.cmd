@@ -5,7 +5,7 @@ COLOR 0D
 TITLE APPS INITIALIZER v0.2
 
 :: Variables
-SET userOption
+SET "userOption"
 
 :: Design of menu
 :optionsMenu
@@ -37,7 +37,7 @@ ECHO +---------------------------------------------+
 ECHO "Please, select an app typing the <letter> of the app that you want to open." ^
 "After you decide wich apps do you want to open, press 0 to open everything."
 ECHO.
-ECHO "Your choices: "%userOption%
+ECHO Your apps: '%userOption%'
 CHOICE /C 0123AB /N /M "Choice: "
 
 :: If user has chosen 0
