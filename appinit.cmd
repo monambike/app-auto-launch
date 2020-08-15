@@ -4,6 +4,9 @@ setlocal enabledelayedexpansion
 COLOR 0D
 TITLE APPS INITIALIZER v0.2
 
+:: Variables
+SET userOption
+
 :: Design of menu
 :optionsMenu
 ECHO APPS INITIALIZER
@@ -21,45 +24,57 @@ ECHO \ 3. Exit                                     /
 ECHO \                                             /
 ECHO \ APPS:                                       /
 ECHO \ A. Sublime Text 3                           /
-ECHO \ B. Calculator                               /
+ECHO \ B. Discord                                  /
+ECHO \ C. XAMPP                                    /
+ECHO \ D. GIT                                      /
+ECHO \ E. CMD                                      /
+ECHO \ BROWSERS:                                   /
+ECHO \ F. Opera                                    /
 ECHO \                                             /
 ECHO +---------------------------------------------+
 
 :: Choice
 ECHO "Please, select an app typing the <letter> of the app that you want to open." ^
 "After you decide wich apps do you want to open, press 0 to open everything."
+ECHO.
+ECHO "Your choices: "%userOption%
 CHOICE /C 0123AB /N /M "Choice: "
 
 :: If user has chosen 0
 IF %ERRORLEVEL% EQU 1 (
-	ECHO "0"
+	SET userOption=%userOption%0
+	GOTO :returnMenu
 )
 :: If user has chosen 1
 IF %ERRORLEVEL% EQU 2 (
-	ECHO "1"
+	SET userOption=%userOption%1
+	GOTO :returnMenu
 )
 :: If user has chosen 2
 IF %ERRORLEVEL% EQU 3 (
-	ECHO "2"
+	SET userOption=%userOption%2
+	GOTO :returnMenu
+)
+IF %ERRORLEVEL% EQU 4 (
+	ECHO userOption
+	PAUSE
 )
 
 :: Function to gather an exception
 ECHO "This value doesn't exist. Please, press any key and try again."
-PAUSE >NUL
-CLS
-GOTO :optionsMenu
+GOTO :returnMenu
 
 :: Function to open app
 :openApps
 ECHO "U pressed 0"
-ECHO "Press any key to back to menu."
-PAUSE >NUL
-CLS
-GOTO :optionsMenu
+GOTO :returnMenu
 
 ::Function for testing
 :funnyFunction
 ECHO "You pressed 1"
+GOTO :returnMenu
+
+:returnMenu
 ECHO "Press any key to back to menu."
 PAUSE >NUL
 CLS
