@@ -19,9 +19,8 @@ ECHO \  PLEASE CHOOSE THE SERVICES THAT U WANT TO OPEN /
 ECHO \                                                 /
 ECHO \ COMMANDS                                        /
 ECHO \ 0. Open Chosen Apps                             /
-ECHO \ 1. Clear                                        /
-ECHO \ 2. Cancel                                       /
-ECHO \ 3. Exit                                         /
+ECHO \ 1. Cancel                                       /
+ECHO \ 2. Exit                                         /
 ECHO \                                                 /
 ECHO \ SERVICES                                        /
 ECHO \ Apps:                                           /
@@ -51,53 +50,46 @@ IF %ERRORLEVEL% EQU 1 (
 	CLS
 	GOTO :optionsMenu
 )
-:: If user has chosen 1
-IF %ERRORLEVEL% EQU 2 (
-	ECHO Clear
-	PAUSE
-	CLS
-	GOTO :optionsMenu
-)
 :: If user has chosen 2
-IF %ERRORLEVEL% EQU 3 (
+IF %ERRORLEVEL% EQU 2 (
 	ECHO Cancel
 	PAUSE
 	CLS
 	GOTO :optionsMenu
 )
-IF %ERRORLEVEL% EQU 4 (
+IF %ERRORLEVEL% EQU 3 (
 	ECHO Exit
 	PAUSE
 	CLS
 	GOTO :optionsMenu
 )
 :: SERVICES
-IF %ERRORLEVEL% EQU 5 (
+IF %ERRORLEVEL% EQU 4 (
 	SET userOption=%userOption%A
 	CLS
 	GOTO :optionsMenu
 )
-IF %ERRORLEVEL% EQU 6 (
+IF %ERRORLEVEL% EQU 5 (
 	SET userOption=%userOption%B
 	CLS
 	GOTO :optionsMenu
 )
-IF %ERRORLEVEL% EQU 7 (
+IF %ERRORLEVEL% EQU 6 (
 	SET userOption=%userOption%C
 	CLS
 	GOTO :optionsMenu
 )
-IF %ERRORLEVEL% EQU 8 (
+IF %ERRORLEVEL% EQU 7 (
 	SET userOption=%userOption%D
 	CLS
 	GOTO :optionsMenu
 )
-IF %ERRORLEVEL% EQU 9 (
+IF %ERRORLEVEL% EQU 8 (
 	SET userOption=%userOption%E
 	CLS
 	GOTO :optionsMenu
 )
-IF %ERRORLEVEL% EQU 10 (
+IF %ERRORLEVEL% EQU 9 (
 	SET userOption=%userOption%F
 	CLS
 	GOTO :optionsMenu
