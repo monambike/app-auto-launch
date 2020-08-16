@@ -17,11 +17,10 @@ SET app[5]=Opera
 
 :: Design of menu
 :optionsMenu
-ECHO APPS INITIALIZER
-ECHO.
-ECHO Please note that the files path may be wrong, be sure of edit the cmd file before use it.
-ECHO.
 ECHO +--------------------------------------------------+
+ECHO [               APP INITIALIZER                    ]
+ECHO [      Don't forget to change the paths of         ]
+ECHO [                 variables :)                     ]
 ECHO [                                                  ]
 ECHO [  PLEASE CHOOSE THE SERVICES THAT U WANT TO OPEN  ]
 ECHO [      After you choose a service, you can:        ]
