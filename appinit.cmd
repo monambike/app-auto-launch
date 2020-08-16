@@ -21,35 +21,41 @@ ECHO APPS INITIALIZER
 ECHO.
 ECHO Please note that the files path may be wrong, be sure of edit the cmd file before use it.
 ECHO.
-ECHO +-------------------------------------------------+
-ECHO *                                                 *
-ECHO *  PLEASE CHOOSE THE SERVICES THAT U WANT TO OPEN *
-ECHO *      After you choose a service, you can:       *
-ECHO *                                                 *
-ECHO *          - Open the apps that you choose        *
-ECHO *          - Cancel, this will reset you chooses  *
-ECHO *          - Exit of the program                  *
-ECHO *                                                 *
-ECHO * +--------------------+                          *
-ECHO * *      COMMANDS      *                          *
-ECHO * *0. Open Chosen Apps *                          *
-ECHO * *1. Cancel           *                          *
-ECHO * *2. Exit             *                          *
-ECHO * +--------------------+                          *
-ECHO *                                                 *
-ECHO * +---------------------+                         *
-ECHO * *      SERVICES       *                         *
-ECHO * *Apps:                *                         *
-ECHO * *A. Sublime Text 3    *                         *
-ECHO * *B. Discord           *                         *
-ECHO * *C. XAMPP             *                         *
-ECHO * *Prompts:             *                         *
-ECHO * *D. Git               *                         *
-ECHO * *E. CMD               *                         *
-ECHO * *Browser:             *                         *
-ECHO * *F. Opera             *                         *
-ECHO *  +---------------------+                        *
-ECHO +-------------------------------------------------+
+ECHO +--------------------------------------------------+
+ECHO [                                                  ]
+ECHO [  PLEASE CHOOSE THE SERVICES THAT U WANT TO OPEN  ]
+ECHO [      After you choose a service, you can:        ]
+ECHO [                                                  ]
+ECHO [          - Open the apps that you choose         ]
+ECHO [          - Cancel, this will reset you chooses   ]
+ECHO [          - Exit of the program                   ]
+ECHO [                                                  ]
+ECHO [ ________________________                         ]
+ECHO [ [                      ]                         ]
+ECHO [ [      COMMANDS        ]                         ]
+ECHO [ [                      ]                         ]
+ECHO [ [ 0. Open Chosen Apps  ]                         ]
+ECHO [ [ 1. Cancel            ]                         ]
+ECHO [ [ 2. Exit              ]                         ]
+ECHO [ [                      ]                         ]
+ECHO [ ________________________                         ]
+ECHO [                                                  ]
+ECHO [ ________________________                         ]
+ECHO [ [                      ]                         ]
+ECHO [ [      SERVICES        ]                         ]
+ECHO [ [                      ]                         ]
+ECHO [ [ Apps:                ]                         ]
+ECHO [ [ A. Sublime Text 3    ]                         ]
+ECHO [ [ B. Discord           ]                         ]
+ECHO [ [ C. XAMPP             ]                         ]
+ECHO [ [ Prompts:             ]                         ]
+ECHO [ [ D. Git               ]                         ]
+ECHO [ [ E. CMD               ]                         ]
+ECHO [ [ Browser:             ]                         ]
+ECHO [ [ F. Opera             ]                         ]
+ECHO [ [                      ]                         ]
+ECHO [ ________________________                         ]
+ECHO +--------------------------------------------------+
 
 :: Choice
 ECHO "Please, select an app typing the <letter> of the app that you want to open." ^
