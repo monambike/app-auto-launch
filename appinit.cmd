@@ -28,7 +28,7 @@ ECHO \ A. Sublime Text 3                               /
 ECHO \ B. Discord                                      /
 ECHO \ C. XAMPP                                        /
 ECHO \ Prompts:                                        /
-ECHO \ D. GIT                                          /
+ECHO \ D. Git                                          /
 ECHO \ E. CMD                                          /
 ECHO \ Browser:                                        /
 ECHO \ F. Opera                                        /
@@ -43,20 +43,21 @@ ECHO Your apps: '%userOption%'
 CHOICE /C 0123ABCDEF /N /M "Choice: "
 
 :: COMMANDS
-:: If user has chosen 0
+:: If user has chosen to Open Apps
 IF %ERRORLEVEL% EQU 1 (
 	ECHO Open chosen apps
 	PAUSE
 	CLS
 	GOTO :optionsMenu
 )
-:: If user has chosen 2
+:: If user has chosen to Cancel Operation
 IF %ERRORLEVEL% EQU 2 (
 	ECHO Cancel
 	PAUSE
 	CLS
 	GOTO :optionsMenu
 )
+:: If user has chosen to Exit Program
 IF %ERRORLEVEL% EQU 3 (
 	ECHO Exit
 	PAUSE
@@ -64,31 +65,37 @@ IF %ERRORLEVEL% EQU 3 (
 	GOTO :optionsMenu
 )
 :: SERVICES
+:: If user has chosen Sublime Text 3
 IF %ERRORLEVEL% EQU 4 (
 	SET userOption=%userOption%A
 	CLS
 	GOTO :optionsMenu
 )
+:: If user has chosen Discord
 IF %ERRORLEVEL% EQU 5 (
 	SET userOption=%userOption%B
 	CLS
 	GOTO :optionsMenu
 )
+:: If user has chosen XAMPP
 IF %ERRORLEVEL% EQU 6 (
 	SET userOption=%userOption%C
 	CLS
 	GOTO :optionsMenu
 )
+:: If user has chosen Git
 IF %ERRORLEVEL% EQU 7 (
 	SET userOption=%userOption%D
 	CLS
 	GOTO :optionsMenu
 )
+:: If user has chosen CMD
 IF %ERRORLEVEL% EQU 8 (
 	SET userOption=%userOption%E
 	CLS
 	GOTO :optionsMenu
 )
+:: If user has chosen Opera
 IF %ERRORLEVEL% EQU 9 (
 	SET userOption=%userOption%F
 	CLS
