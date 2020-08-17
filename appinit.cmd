@@ -9,8 +9,9 @@ COLOR 0D
 TITLE APPS INITIALIZER v0.2
 
 REM Variables
-SET "userOption"
-SET /A userOption_length=0
+SET "newOption"
+SET "userOptions"
+SET /A userOptions_length=0
 REM The option letter is organized according it's position
 REM E.g. 0=A, 1=B
 SET app[0]=Sublime Text 3
@@ -66,8 +67,8 @@ REM CHOICE
 ECHO "Please, select an app typing the <letter> of the app that you want to open." ^
 "After you decide wich apps do you want to open, press 0 to open everything."
 ECHO.
-IF %userOption_length% GTR 0 (
-	ECHO You selected %userOption_length% apps, and they are: '%userOption%'
+IF %userOptions_length% GTR 0 (
+	ECHO You selected %userOptions_length% apps, and they are: '%userOptions%'
 )
 CHOICE /C 012ABCDEF /N /M "Choice: "
 
@@ -96,39 +97,33 @@ IF %ERRORLEVEL% EQU 3 (
 REM SERVICES
 REM If user has chosen Sublime Text 3
 IF %ERRORLEVEL% EQU 4 (
-	SET userOption=%userOption%A
-	SET /A userOption_length=%userOption_length% + 1
-	GOTO :optionsMenu
+	SET newOption=A
+	GOTO :verifyIfAlreadySelected
 )
 REM If user has chosen Discord
 IF %ERRORLEVEL% EQU 5 (
-	SET userOption=%userOption%B
-	SET /A userOption_length=%userOption_length% + 1
-	GOTO :optionsMenu
+	SET newOption=B
+	GOTO :verifyIfAlreadySelected
 )
 REM If user has chosen XAMPP
 IF %ERRORLEVEL% EQU 6 (
-	SET userOption=%userOption%C
-	SET /A userOption_length=%userOption_length% + 1
-	GOTO :optionsMenu
+	SET newOption=C
+	GOTO :verifyIfAlreadySelected
 )
 REM If user has chosen Git
 IF %ERRORLEVEL% EQU 7 (
-	SET userOption=%userOption%D
-	SET /A userOption_length=%userOption_length% + 1
-	GOTO :optionsMenu
+	SET newOption=D
+	GOTO :verifyIfAlreadySelected
 )
 REM If user has chosen CMD
 IF %ERRORLEVEL% EQU 8 (
-	SET userOption=%userOption%E
-	SET /A userOption_length=%userOption_length% + 1
-	GOTO :optionsMenu
+	SET newOption=E
+	GOTO :verifyIfAlreadySelected
 )
 REM If user has chosen Opera
 IF %ERRORLEVEL% EQU 9 (
-	SET userOption=%userOption%F
-	SET /A userOption_length=%userOption_length% + 1
-	GOTO :optionsMenu
+	SET newOption=F
+	GOTO :verifyIfAlreadySelected
 )
 
 REM Function to gather an exception
@@ -142,8 +137,10 @@ ECHO.
 ECHO Please do the following:
 ECHO     - Please, verify if you did the conditional correctly, following the pattern of the others, searching the value according the position starting from 1;
 ECHO     - Or, choose other option and try again.
-PAUSE >NUL
+ECHO.
+ECHO.
 ECHO - PRESS ANY KEY TO RESTART THE PROGRAM -
+PAUSE >NUL
 GOTO :restartProgram
 
 REM Function to open app
@@ -164,6 +161,36 @@ GOTO :optionsMenu
 
 REM Function for read array
 :readArray
-FOR /L %%i IN (0,1,5) DO ECHO In the position %%i , there's the app !app[%%i]!
+FOR /L %%i IN (0,1,5) DO (
+	ECHO In the position %%i , there's the app !app[%%i]!
+)
 PAUSE >NUL
 ECHO PRESS ANY KEY TO CLOSE
+
+:verifyIfAlreadySelected
+REM Just do the verification if the value is more than 0
+IF %userOptions_length% GTR 0(
+	REM Function will read each letter of the string
+	REM And ensure that the new character doesn't exist
+	FOR /L %%i IN (0, 1, %userOptions_length%) DO (
+
+		REM If the letter already exist, throw an error
+		IF %newOption% EQU %userOptions:~%%i,1% (
+			ECHO Sorry but you have selected this already
+
+			:returnMenu
+		REM If the letter doesn't exist yet
+		) ELSE (
+			REM and the loop is in the end
+			IF  %%i EQU %userOptions_length% (
+				REM add it into the variable
+				SET userOptions=%userOptions%%newOption%
+				SET /A userOptions_length=%userOptions_length% + 1
+
+				:returnMenu
+			)
+		)
+	)
+) ELSE (
+	:returnMenu
+)
