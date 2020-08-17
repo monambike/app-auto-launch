@@ -1,4 +1,8 @@
+:restartProgram
 @ECHO OFF
+REM SETTING SIZE
+MODE 800
+REM Delay for 'FOR' functions
 SETLOCAL enabledelayedexpansion
 REM Personalization of CMD
 COLOR 0D
@@ -15,49 +19,49 @@ SET app[3]=Git
 SET app[4]=CMD
 SET app[5]=Opera
 
-REM Design of menu
+REM MENU
 :optionsMenu
 CLS
-ECHO +--------------------------------------------------+
-ECHO [               APP INITIALIZER                    ]
-ECHO [      Don't forget to change the paths of         ]
-ECHO [                 variables :)                     ]
-ECHO [                                                  ]
-ECHO [  PLEASE CHOOSE THE SERVICES THAT U WANT TO OPEN  ]
-ECHO [      After you choose a service, you can:        ]
-ECHO [                                                  ]
-ECHO [          - Open the apps that you choose         ]
-ECHO [          - Cancel, this will reset you chooses   ]
-ECHO [          - Exit of the program                   ]
-ECHO [                                                  ]
-ECHO [ ________________________                         ]
-ECHO [ :                      :                         ]
-ECHO [ :      COMMANDS        :                         ]
-ECHO [ :                      :                         ]
-ECHO [ : 0. Open Chosen Apps  :                         ]
-ECHO [ : 1. Cancel            :                         ]
-ECHO [ : 2. Exit              :                         ]
-ECHO [ :                      :                         ]
-ECHO [ ________________________                         ]
-ECHO [                                                  ]
-ECHO [ ________________________                         ]
-ECHO [ :                      :                         ]
-ECHO [ :      SERVICES        :                         ]
-ECHO [ :                      :                         ]
-ECHO [ : Apps:                :                         ]
-ECHO [ : A. Sublime Text 3    :                         ]
-ECHO [ : B. Discord           :                         ]
-ECHO [ : C. XAMPP             :                         ]
-ECHO [ : Prompts:             :                         ]
-ECHO [ : D. Git               :                         ]
-ECHO [ : E. CMD               :                         ]
-ECHO [ : Browser:             :                         ]
-ECHO [ : F. Opera             :                         ]
-ECHO [ :                      :                         ]
-ECHO [ ________________________                         ]
-ECHO +--------------------------------------------------+
+ECHO +------------------------------------------------------------------------------------------------+
+ECHO [                                           APP INITIALIZER                                      ]
+ECHO [                                                                                                ]
+ECHO [                                   Don't forget to change the paths of                          ]
+ECHO [                                             variables :)                                       ]
+ECHO [                                                                                                ]
+ECHO [                                                                                                ]
+ECHO [                                                                                                ]
+ECHO [                                                                                                ]
+ECHO [                                                                                                ]
+ECHO [                                                                                                ]
+ECHO [                                                                                                ]
+ECHO [ ________________________                                                                       ]
+ECHO [ :                      :                                                                       ]
+ECHO [ :      COMMANDS        :     *After you choose a service, you can:                             ]
+ECHO [ :                      :       - Open the apps that you choose                                 ]
+ECHO [ : 0. Open Chosen Apps  :       - Cancel, this will reset you chooses                           ]
+ECHO [ : 1. Cancel            :       - Exit of the program                                           ]
+ECHO [ : 2. Exit              :                                                                       ]
+ECHO [ :                      :                                                                       ]
+ECHO [ ________________________                                                                       ]
+ECHO [                                                                                                ]
+ECHO [ ________________________                                                                       ]
+ECHO [ :                      :                                                                       ]
+ECHO [ :      SERVICES        :    *PLEASE CHOOSE THE SERVICES THAT U WANT TO OPEN                    ]
+ECHO [ :                      :                                                                       ]
+ECHO [ : Apps:                :                                                                       ]
+ECHO [ : A. Sublime Text 3    :                                                                       ]
+ECHO [ : B. Discord           :                                                                       ]
+ECHO [ : C. XAMPP             :                                                                       ]
+ECHO [ : Prompts:             :                                                                       ]
+ECHO [ : D. Git               :                                                                       ]
+ECHO [ : E. CMD               :                                                                       ]
+ECHO [ : Browser:             :                                                                       ]
+ECHO [ : F. Opera             :                                                                       ]
+ECHO [ :                      :                                                                       ]
+ECHO [ ________________________                                                                       ]
+ECHO +------------------------------------------------------------------------------------------------+
 
-REM Choice
+REM CHOICE
 ECHO "Please, select an app typing the <letter> of the app that you want to open." ^
 "After you decide wich apps do you want to open, press 0 to open everything."
 ECHO.
@@ -120,6 +124,7 @@ IF %ERRORLEVEL% EQU 9 (
 
 REM Function to gather an exception
 CLS
+COLOR 04
 ECHO [ ERROR ]
 ECHO.
 ECHO.
@@ -128,7 +133,9 @@ ECHO.
 ECHO Please do the following:
 ECHO     - Please, verify if you did the conditional correctly, following the pattern of the others, searching the value according the position starting from 1;
 ECHO     - Or, choose other option and try again.
-GOTO :returnMenu
+PAUSE >NUL
+ECHO - PRESS ANY KEY TO RESTART THE PROGRAM -
+GOTO :restartProgram
 
 REM Function to open app
 :openApps
