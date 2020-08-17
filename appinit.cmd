@@ -10,6 +10,7 @@ TITLE APPS INITIALIZER v0.2
 
 REM Variables
 SET "userOption"
+SET /A userOption_length=0
 REM The option letter is organized according it's position
 REM E.g. 0=A, 1=B
 SET app[0]=Sublime Text 3
@@ -65,7 +66,9 @@ REM CHOICE
 ECHO "Please, select an app typing the <letter> of the app that you want to open." ^
 "After you decide wich apps do you want to open, press 0 to open everything."
 ECHO.
-ECHO Your apps: '%userOption%'
+IF %userOption_length% GTR 0 (
+	ECHO You selected %userOption_length% apps, and they are: '%userOption%'
+)
 CHOICE /C 012ABCDEF /N /M "Choice: "
 
 REM COMMANDS
@@ -94,31 +97,37 @@ REM SERVICES
 REM If user has chosen Sublime Text 3
 IF %ERRORLEVEL% EQU 4 (
 	SET userOption=%userOption%A
+	SET /A userOption_length=%userOption_length% + 1
 	GOTO :optionsMenu
 )
 REM If user has chosen Discord
 IF %ERRORLEVEL% EQU 5 (
 	SET userOption=%userOption%B
+	SET /A userOption_length=%userOption_length% + 1
 	GOTO :optionsMenu
 )
 REM If user has chosen XAMPP
 IF %ERRORLEVEL% EQU 6 (
 	SET userOption=%userOption%C
+	SET /A userOption_length=%userOption_length% + 1
 	GOTO :optionsMenu
 )
 REM If user has chosen Git
 IF %ERRORLEVEL% EQU 7 (
 	SET userOption=%userOption%D
+	SET /A userOption_length=%userOption_length% + 1
 	GOTO :optionsMenu
 )
 REM If user has chosen CMD
 IF %ERRORLEVEL% EQU 8 (
 	SET userOption=%userOption%E
+	SET /A userOption_length=%userOption_length% + 1
 	GOTO :optionsMenu
 )
 REM If user has chosen Opera
 IF %ERRORLEVEL% EQU 9 (
 	SET userOption=%userOption%F
+	SET /A userOption_length=%userOption_length% + 1
 	GOTO :optionsMenu
 )
 
