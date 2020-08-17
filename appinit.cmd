@@ -153,7 +153,7 @@ ECHO - PRESS ANY KEY TO BACK TO MENU -
 PAUSE >NUL
 GOTO :optionsMenu
 
-REMFunction for read array
+REM Function for read array
 :readArray
 FOR /L %%i IN (0,1,5) DO ECHO In the position %%i , there's the app !app[%%i]!
 PAUSE >NUL
