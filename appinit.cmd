@@ -147,6 +147,6 @@ GOTO :optionsMenu
 
 REMFunction for read array
 :readArray
-REMFOR /L %%i IN (0,1,5) DO ECHO In the position %%i , there's the app !app[%%i]!
+FOR /L %%i IN (0,1,5) DO ECHO In the position %%i , there's the app !app[%%i]!
 PAUSE >NUL
 ECHO PRESS ANY KEY TO CLOSE
