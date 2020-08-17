@@ -22,7 +22,7 @@ ECHO [               APP INITIALIZER                    ]
 ECHO [      Don't forget to change the paths of         ]
 ECHO [                 variables :)                     ]
 ECHO [                                                  ]
-ECHO [  PLEASE CHOOSE THE SERVICES THAT U WANT TO OPEN  ]
+ECHO [  PLEASE choose THE SERVICES THAT U WANT TO OPEN  ]
 ECHO [      After you choose a service, you can:        ]
 ECHO [                                                  ]
 ECHO [          - Open the apps that you choose         ]
@@ -33,9 +33,9 @@ ECHO [ ________________________                         ]
 ECHO [ [                      ]                         ]
 ECHO [ [      COMMANDS        ]                         ]
 ECHO [ [                      ]                         ]
-ECHO [ [ 0. Open Chosen Apps  ]                         ]
-ECHO [ [ 1. Cancel            ]                         ]
-ECHO [ [ 2. Exit              ]                         ]
+ECHO [ [ A. Open Chosen Apps  ]                         ]
+ECHO [ [ B. Cancel            ]                         ]
+ECHO [ [ C. Exit              ]                         ]
 ECHO [ [                      ]                         ]
 ECHO [ ________________________                         ]
 ECHO [                                                  ]
@@ -44,14 +44,14 @@ ECHO [ [                      ]                         ]
 ECHO [ [      SERVICES        ]                         ]
 ECHO [ [                      ]                         ]
 ECHO [ [ Apps:                ]                         ]
-ECHO [ [ A. Sublime Text 3    ]                         ]
-ECHO [ [ B. Discord           ]                         ]
-ECHO [ [ C. XAMPP             ]                         ]
+ECHO [ [ 1. Sublime Text 3    ]                         ]
+ECHO [ [ 2. Discord           ]                         ]
+ECHO [ [ 3. XAMPP             ]                         ]
 ECHO [ [ Prompts:             ]                         ]
-ECHO [ [ D. Git               ]                         ]
-ECHO [ [ E. CMD               ]                         ]
+ECHO [ [ 4. Git               ]                         ]
+ECHO [ [ 5. CMD               ]                         ]
 ECHO [ [ Browser:             ]                         ]
-ECHO [ [ F. Opera             ]                         ]
+ECHO [ [ 6. Opera             ]                         ]
 ECHO [ [                      ]                         ]
 ECHO [ ________________________                         ]
 ECHO +--------------------------------------------------+
@@ -61,11 +61,11 @@ ECHO "Please, select an app typing the <letter> of the app that you want to open
 "After you decide wich apps do you want to open, press 0 to open everything."
 ECHO.
 ECHO Your apps: '%userOption%'
-CHOICE /C 012ABCDEF /N /M "Choice: "
+SET /P choose="Choose: "
 
 REM COMMANDS
 REM If user has chosen to Open Apps
-IF %ERRORLEVEL% EQU 1 (
+IF %choose% EQU 1 (
 	ECHO Open chosen apps
 	PAUSE
 	CLS
@@ -73,7 +73,7 @@ IF %ERRORLEVEL% EQU 1 (
 )
 
 REM If user has chosen to Cancel Operation
-IF %ERRORLEVEL% EQU 2 (
+IF %choose% EQU 2 (
 	REM ECHO Cancel
 	REM PAUSE
 	REM CLS
@@ -81,7 +81,7 @@ IF %ERRORLEVEL% EQU 2 (
 	GOTO :readArray
 )
 REM If user has chosen to Exit Program
-IF %ERRORLEVEL% EQU 3 (
+IF %choose% EQU 3 (
 	ECHO Exit
 	PAUSE
 	CLS
@@ -89,37 +89,37 @@ IF %ERRORLEVEL% EQU 3 (
 )
 REM SERVICES
 REM If user has chosen Sublime Text 3
-IF %ERRORLEVEL% EQU 4 (
+IF /I %choose% EQU A (
 	SET userOption=%userOption%A
 	CLS
 	GOTO :optionsMenu
 )
 REM If user has chosen Discord
-IF %ERRORLEVEL% EQU 5 (
+IF /I %choose% EQU B (
 	SET userOption=%userOption%B
 	CLS
 	GOTO :optionsMenu
 )
 REM If user has chosen XAMPP
-IF %ERRORLEVEL% EQU 6 (
+IF /I %choose% EQU C (
 	SET userOption=%userOption%C
 	CLS
 	GOTO :optionsMenu
 )
 REM If user has chosen Git
-IF %ERRORLEVEL% EQU 7 (
+IF /I %choose% EQU D (
 	SET userOption=%userOption%D
 	CLS
 	GOTO :optionsMenu
 )
 REM If user has chosen CMD
-IF %ERRORLEVEL% EQU 8 (
+IF /I %choose% EQU E (
 	SET userOption=%userOption%E
 	CLS
 	GOTO :optionsMenu
 )
 REM If user has chosen Opera
-IF %ERRORLEVEL% EQU 9 (
+IF /I %choose% EQU F (
 	SET userOption=%userOption%F
 	CLS
 	GOTO :optionsMenu
