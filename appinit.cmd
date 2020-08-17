@@ -17,12 +17,13 @@ SET app[5]=Opera
 
 REM Design of menu
 :optionsMenu
+CLS
 ECHO +--------------------------------------------------+
 ECHO [               APP INITIALIZER                    ]
 ECHO [      Don't forget to change the paths of         ]
 ECHO [                 variables :)                     ]
 ECHO [                                                  ]
-ECHO [  PLEASE choose THE SERVICES THAT U WANT TO OPEN  ]
+ECHO [  PLEASE CHOOSE THE SERVICES THAT U WANT TO OPEN  ]
 ECHO [      After you choose a service, you can:        ]
 ECHO [                                                  ]
 ECHO [          - Open the apps that you choose         ]
@@ -33,9 +34,9 @@ ECHO [ ________________________                         ]
 ECHO [ [                      ]                         ]
 ECHO [ [      COMMANDS        ]                         ]
 ECHO [ [                      ]                         ]
-ECHO [ [ A. Open Chosen Apps  ]                         ]
-ECHO [ [ B. Cancel            ]                         ]
-ECHO [ [ C. Exit              ]                         ]
+ECHO [ [ 0. Open Chosen Apps  ]                         ]
+ECHO [ [ 1. Cancel            ]                         ]
+ECHO [ [ 2. Exit              ]                         ]
 ECHO [ [                      ]                         ]
 ECHO [ ________________________                         ]
 ECHO [                                                  ]
@@ -44,14 +45,14 @@ ECHO [ [                      ]                         ]
 ECHO [ [      SERVICES        ]                         ]
 ECHO [ [                      ]                         ]
 ECHO [ [ Apps:                ]                         ]
-ECHO [ [ 1. Sublime Text 3    ]                         ]
-ECHO [ [ 2. Discord           ]                         ]
-ECHO [ [ 3. XAMPP             ]                         ]
+ECHO [ [ A. Sublime Text 3    ]                         ]
+ECHO [ [ B. Discord           ]                         ]
+ECHO [ [ C. XAMPP             ]                         ]
 ECHO [ [ Prompts:             ]                         ]
-ECHO [ [ 4. Git               ]                         ]
-ECHO [ [ 5. CMD               ]                         ]
+ECHO [ [ D. Git               ]                         ]
+ECHO [ [ E. CMD               ]                         ]
 ECHO [ [ Browser:             ]                         ]
-ECHO [ [ 6. Opera             ]                         ]
+ECHO [ [ F. Opera             ]                         ]
 ECHO [ [                      ]                         ]
 ECHO [ ________________________                         ]
 ECHO +--------------------------------------------------+
@@ -61,19 +62,18 @@ ECHO "Please, select an app typing the <letter> of the app that you want to open
 "After you decide wich apps do you want to open, press 0 to open everything."
 ECHO.
 ECHO Your apps: '%userOption%'
-SET /P choose="Choose: "
+CHOICE /C 012ABCDEF /N /M "Choice: "
 
 REM COMMANDS
 REM If user has chosen to Open Apps
-IF %choose% EQU 1 (
+IF %ERRORLEVEL% EQU 1 (
 	ECHO Open chosen apps
 	PAUSE
-	CLS
 	GOTO :optionsMenu
 )
 
 REM If user has chosen to Cancel Operation
-IF %choose% EQU 2 (
+IF %ERRORLEVEL% EQU 2 (
 	REM ECHO Cancel
 	REM PAUSE
 	REM CLS
@@ -81,52 +81,53 @@ IF %choose% EQU 2 (
 	GOTO :readArray
 )
 REM If user has chosen to Exit Program
-IF %choose% EQU 3 (
+IF %ERRORLEVEL% EQU 3 (
 	ECHO Exit
 	PAUSE
-	CLS
 	GOTO :optionsMenu
 )
 REM SERVICES
 REM If user has chosen Sublime Text 3
-IF /I %choose% EQU A (
+IF %ERRORLEVEL% EQU 4 (
 	SET userOption=%userOption%A
-	CLS
 	GOTO :optionsMenu
 )
 REM If user has chosen Discord
-IF /I %choose% EQU B (
+IF %ERRORLEVEL% EQU 5 (
 	SET userOption=%userOption%B
-	CLS
 	GOTO :optionsMenu
 )
 REM If user has chosen XAMPP
-IF /I %choose% EQU C (
+IF %ERRORLEVEL% EQU 6 (
 	SET userOption=%userOption%C
-	CLS
 	GOTO :optionsMenu
 )
 REM If user has chosen Git
-IF /I %choose% EQU D (
+IF %ERRORLEVEL% EQU 7 (
 	SET userOption=%userOption%D
-	CLS
 	GOTO :optionsMenu
 )
 REM If user has chosen CMD
-IF /I %choose% EQU E (
+IF %ERRORLEVEL% EQU 8 (
 	SET userOption=%userOption%E
-	CLS
 	GOTO :optionsMenu
 )
 REM If user has chosen Opera
-IF /I %choose% EQU F (
+IF %ERRORLEVEL% EQU 9 (
 	SET userOption=%userOption%F
-	CLS
 	GOTO :optionsMenu
 )
 
 REM Function to gather an exception
-ECHO "This value doesn't exist. Please, press any key and try again."
+CLS
+ECHO [ ERROR ]
+ECHO.
+ECHO.
+ECHO The option in position '%ERRORLEVEL%' exist, but there's no conditional for it yet, or the conditional is in the wrong place.
+ECHO.
+ECHO Please do the following:
+ECHO     - Please, verify if you did the conditional correctly, following the pattern of the others, searching the value according the position starting from 1;
+ECHO     - Or, choose other option and try again.
 GOTO :returnMenu
 
 REM Function to open app
@@ -140,9 +141,9 @@ ECHO "You pressed 1"
 GOTO :returnMenu
 
 :returnMenu
-ECHO "Press any key to back to menu."
+ECHO.
+ECHO - PRESS ANY KEY TO BACK TO MENU -
 PAUSE >NUL
-CLS
 GOTO :optionsMenu
 
 REMFunction for read array
