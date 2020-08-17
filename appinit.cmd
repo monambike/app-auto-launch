@@ -1,5 +1,5 @@
 @ECHO OFF
-setlocal enabledelayedexpansion
+SETLOCAL enabledelayedexpansion
 :: Personalization of CMD
 COLOR 0D
 TITLE APPS INITIALIZER v0.2
@@ -73,10 +73,11 @@ IF %ERRORLEVEL% EQU 1 (
 )
 :: If user has chosen to Cancel Operation
 IF %ERRORLEVEL% EQU 2 (
-	ECHO Cancel
-	PAUSE
-	CLS
-	GOTO :optionsMenu
+	REM ECHO Cancel
+	REM PAUSE
+	REM CLS
+	REM GOTO :optionsMenu
+	GOTO :readArray
 )
 :: If user has chosen to Exit Program
 IF %ERRORLEVEL% EQU 3 (
@@ -142,3 +143,9 @@ ECHO "Press any key to back to menu."
 PAUSE >NUL
 CLS
 GOTO :optionsMenu
+
+::Function for read array
+:readArray
+FOR /L %%i IN (0,1,5) DO ECHO In the position %%i , there's the app !app[%%i]!
+PAUSE >NUL
+ECHO PRESS ANY KEY TO CLOSE
