@@ -3,7 +3,7 @@
 REM SETTING SIZE
 MODE 800
 REM Delay for 'FOR' functions
-SETLOCAL enabledelayedexpansion
+SETLOCAL ENABLEDELAYEDEXPANSION
 REM Personalization of CMD
 COLOR 0D
 TITLE APPS INITIALIZER v0.2
@@ -22,7 +22,7 @@ SET app[5]=Opera
 
 REM MENU
 :optionsMenu
-SET "newOption"
+SET newOption=""
 CLS
 ECHO +------------------------------------------------------------------------------------------------+
 ECHO [                                           APP INITIALIZER                                      ]
@@ -70,7 +70,7 @@ ECHO.
 IF %userOptions_length% GTR 0 (
 	ECHO You selected %userOptions_length% apps, and they are: '%userOptions%'
 )
-CHOICE /C 012ABCDEF /N /M "Choice: "
+CHOICE /C 012ABCDEFG /N /M "Choice: "
 
 REM COMMANDS
 REM If user has chosen to Open Apps
@@ -148,38 +148,37 @@ ECHO PRESS ANY KEY TO CLOSE
 
 :verifyIfAlreadySelected
 REM If the option selected by the user has a condition
-IF %newOption% NEQ "" (
-	REM Just do the verification if the value is more than 0
-	IF %userOptions_length% GTR 0(
+CALL IF %newOption% NEQ "" (
+	ECHO 1
+	PAUSE >NUL
+
+	REM Just do the verification if user has typed more than 1 value
+
+	CALL IF %userOptions_length% GTR 1 (
+		ECHO 2
+		PAUSE >NUL
+
 		REM Function will read each letter of the string
 		REM And ensure that the new character doesn't exist
-		FOR /L %%i IN (0, 1, %userOptions_length%) DO (
+
+		CALL ECHO 3
+		PAUSE >NUL
+		
+		FOR /L %%i IN (0,1,%userOptions_length) DO CALL (
+			ECHO 4
+			PAUSE >NUL
 
 			REM If the letter already exist, throw an error
-			IF %newOption% EQU %userOptions:~%%i,1% (
-				ECHO Sorry but you have selected this already
-
-				:returnMenu
-			REM If the letter doesn't exist yet
-			) ELSE (
-				REM and the loop is in the end
-				IF  %%i EQU %userOptions_length% (
-					REM add it into the variable
-					SET userOptions=%userOptions%%newOption%
-					SET /A userOptions_length=%userOptions_length% + 1
-
-					:returnMenu
-				)
-			)
 		)
+
+		ECHO 5
+		PAUSE >NUL
 	) ELSE (
 		:returnMenu
 	)
-REM If not, show an error page
 ) ELSE (
 	GOTO :errorPage
 )
-
 
 :errorPage
 REM Function to gather an exception
