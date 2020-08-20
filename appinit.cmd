@@ -9,7 +9,6 @@ COLOR 0D
 TITLE APPS INITIALIZER v0.2
 
 REM Variables
-SET "newOption"
 SET "userOptions"
 SET /A userOptions_length=0
 REM The option letter is organized according it's position
@@ -23,6 +22,7 @@ SET app[5]=Opera
 
 REM MENU
 :optionsMenu
+SET "newOption"
 CLS
 ECHO +------------------------------------------------------------------------------------------------+
 ECHO [                                           APP INITIALIZER                                      ]
@@ -98,50 +98,29 @@ REM SERVICES
 REM If user has chosen Sublime Text 3
 IF %ERRORLEVEL% EQU 4 (
 	SET newOption=A
-	GOTO :verifyIfAlreadySelected
 )
 REM If user has chosen Discord
 IF %ERRORLEVEL% EQU 5 (
 	SET newOption=B
-	GOTO :verifyIfAlreadySelected
 )
 REM If user has chosen XAMPP
 IF %ERRORLEVEL% EQU 6 (
 	SET newOption=C
-	GOTO :verifyIfAlreadySelected
 )
 REM If user has chosen Git
 IF %ERRORLEVEL% EQU 7 (
 	SET newOption=D
-	GOTO :verifyIfAlreadySelected
 )
 REM If user has chosen CMD
 IF %ERRORLEVEL% EQU 8 (
 	SET newOption=E
-	GOTO :verifyIfAlreadySelected
 )
 REM If user has chosen Opera
 IF %ERRORLEVEL% EQU 9 (
 	SET newOption=F
-	GOTO :verifyIfAlreadySelected
 )
 
-REM Function to gather an exception
-CLS
-COLOR 04
-ECHO [ ERROR ]
-ECHO.
-ECHO.
-ECHO The option in position '%ERRORLEVEL%' exist, but there's no conditional for it yet, or the conditional is in the wrong place.
-ECHO.
-ECHO Please do the following:
-ECHO     - Please, verify if you did the conditional correctly, following the pattern of the others, searching the value according the position starting from 1;
-ECHO     - Or, choose other option and try again.
-ECHO.
-ECHO.
-ECHO - PRESS ANY KEY TO RESTART THE PROGRAM -
-PAUSE >NUL
-GOTO :restartProgram
+GOTO :verifyIfAlreadySelected
 
 REM Function to open app
 :openApps
@@ -168,29 +147,54 @@ PAUSE >NUL
 ECHO PRESS ANY KEY TO CLOSE
 
 :verifyIfAlreadySelected
-REM Just do the verification if the value is more than 0
-IF %userOptions_length% GTR 0(
-	REM Function will read each letter of the string
-	REM And ensure that the new character doesn't exist
-	FOR /L %%i IN (0, 1, %userOptions_length%) DO (
+REM If the option selected by the user has a condition
+IF %newOption% NEQ "" (
+	REM Just do the verification if the value is more than 0
+	IF %userOptions_length% GTR 0(
+		REM Function will read each letter of the string
+		REM And ensure that the new character doesn't exist
+		FOR /L %%i IN (0, 1, %userOptions_length%) DO (
 
-		REM If the letter already exist, throw an error
-		IF %newOption% EQU %userOptions:~%%i,1% (
-			ECHO Sorry but you have selected this already
-
-			:returnMenu
-		REM If the letter doesn't exist yet
-		) ELSE (
-			REM and the loop is in the end
-			IF  %%i EQU %userOptions_length% (
-				REM add it into the variable
-				SET userOptions=%userOptions%%newOption%
-				SET /A userOptions_length=%userOptions_length% + 1
+			REM If the letter already exist, throw an error
+			IF %newOption% EQU %userOptions:~%%i,1% (
+				ECHO Sorry but you have selected this already
 
 				:returnMenu
+			REM If the letter doesn't exist yet
+			) ELSE (
+				REM and the loop is in the end
+				IF  %%i EQU %userOptions_length% (
+					REM add it into the variable
+					SET userOptions=%userOptions%%newOption%
+					SET /A userOptions_length=%userOptions_length% + 1
+
+					:returnMenu
+				)
 			)
 		)
+	) ELSE (
+		:returnMenu
 	)
+REM If not, show an error page
 ) ELSE (
-	:returnMenu
+	GOTO :errorPage
 )
+
+
+:errorPage
+REM Function to gather an exception
+CLS
+COLOR 04
+ECHO [ ERROR ]
+ECHO.
+ECHO.
+ECHO The option in position '%ERRORLEVEL%' exist, but there's no conditional for it yet, or the conditional is in the wrong place.
+ECHO.
+ECHO Please do the following:
+ECHO     - Please, verify if you did the conditional correctly, following the pattern of the others, searching the value according the position starting from 1;
+ECHO     - Or, choose other option and try again.
+ECHO.
+ECHO.
+ECHO - PRESS ANY KEY TO RESTART THE PROGRAM -
+PAUSE >NUL
+GOTO :restartProgram
