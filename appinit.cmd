@@ -177,6 +177,8 @@ CALL IF %newOption% NEQ "" (
 		:returnMenu
 	)
 ) ELSE (
+	ECHO ELSE
+	PAUSE >NUL
 	GOTO :errorPage
 )
 
