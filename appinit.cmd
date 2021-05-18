@@ -1,17 +1,20 @@
 :restartProgram
 @ECHO OFF
+
 REM SETTING SIZE
 MODE 800
+
 REM Delay for 'FOR' functions
 SETLOCAL ENABLEDELAYEDEXPANSION
+
 REM Personalization of CMD
-COLOR 0D
+COLOR 057
 TITLE APPS INITIALIZER v0.2
 
 REM Variables
 SET "userOptions"
 SET /A userOptions_length=0
-REM The option letter is organized according it's position
+REM The option letter is organized according its position
 REM E.g. 0=A, 1=B
 SET app[0]=Sublime Text 3
 SET app[1]=Discord
@@ -76,11 +79,10 @@ IF %ERRORLEVEL% EQU 1 (
 
 REM If user has chosen to Cancel Operation
 IF %ERRORLEVEL% EQU 2 (
-	REM ECHO Cancel
-	REM PAUSE
-	REM CLS
-	REM GOTO :optionsMenu
-	GOTO :readArray
+	ECHO Cancel
+	PAUSE
+	CLS
+	GOTO :optionsMenu
 )
 REM If user has chosen to Exit Program
 IF %ERRORLEVEL% EQU 3 (
@@ -114,14 +116,14 @@ IF %ERRORLEVEL% EQU 9 (
 	SET newOption=F
 )
 
-GOTO :verifyIfAlreadySelected
+REM GOTO :verifyIfAlreadySelected
 
-REM Function to open app
+REM FUNCTION TO OPEN ALL SELECTED APPS
 :openApps
 ECHO "U pressed 0"
 GOTO :returnMenu
 
-REMFunction for testing
+REM FUNCTION FOR TESTING
 :funnyFunction
 ECHO "You pressed 1"
 GOTO :returnMenu
@@ -132,7 +134,7 @@ ECHO - PRESS ANY KEY TO BACK TO MENU -
 PAUSE >NUL
 GOTO :optionsMenu
 
-REM Function for read array
+REM FUNCTION TO READ ARRAY
 :readArray
 FOR /L %%i IN (0,1,5) DO (
 	ECHO In the position %%i , there's the app !app[%%i]!
