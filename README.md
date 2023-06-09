@@ -1,4 +1,4 @@
-# App Auto Launch
+# App Auto Launch :rocket:
 
 A simple CMD script that helps me to execute necessary applications with a single input. So when you wanted to play League of Legends for example you could have Discord and League of Graphs open, and when you wanted to code have GitHub, Git, Visual Code and Visual Studio open at few button press.
 
